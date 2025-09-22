@@ -1,7 +1,6 @@
 #include "Biblioteca.h"
-#include <limits> // Para std::numeric_limits
+#include <limits> 
 
-// Função para exibir o menu e obter a escolha do usuário
 int exibirMenu() {
     int escolha;
     std::cout << "\n--- Sistema de Gerenciamento da Biblioteca ---\n";
@@ -20,7 +19,6 @@ int exibirMenu() {
     return escolha;
 }
 
-// Função para limpar o buffer do teclado
 void limparBuffer() {
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
@@ -31,10 +29,10 @@ int main() {
 
     do {
         escolha = exibirMenu();
-        limparBuffer(); // Limpa o buffer antes de ler strings
+        limparBuffer();
 
         switch (escolha) {
-            case 1: { // Adicionar Livro
+            case 1: {
                 std::string titulo, autor, isbn;
                 int ano;
                 std::cout << "--- Adicionar Livro ---\n";
@@ -51,10 +49,10 @@ int main() {
                 minha_biblioteca.adicionarLivro(novoLivro);
                 break;
             }
-            case 2: // Listar Livros
+            case 2:
                 minha_biblioteca.listarLivros();
                 break;
-            case 3: { // Remover Livro
+            case 3: {
                 std::string isbn;
                 std::cout << "--- Remover Livro ---\n";
                 std::cout << "ISBN do livro a ser removido: ";
@@ -62,7 +60,7 @@ int main() {
                 minha_biblioteca.removerLivro(isbn);
                 break;
             }
-            case 4: { // Adicionar Membro
+            case 4: {
                 std::string nome, id;
                 std::cout << "--- Adicionar Membro ---\n";
                 std::cout << "Nome: ";
@@ -73,10 +71,10 @@ int main() {
                 minha_biblioteca.adicionarMembro(novoMembro);
                 break;
             }
-            case 5: // Listar Membros
+            case 5:
                 minha_biblioteca.listarMembros();
                 break;
-            case 6: { // Remover Membro
+            case 6: {
                 std::string id;
                 std::cout << "--- Remover Membro ---\n";
                 std::cout << "ID do Membro a ser removido: ";
@@ -84,7 +82,7 @@ int main() {
                 minha_biblioteca.removerMembro(id);
                 break;
             }
-            case 7: { // Emprestar Livro
+            case 7: {
                 std::string isbn, id;
                 std::cout << "--- Emprestar Livro ---\n";
                 std::cout << "ISBN do livro: ";
@@ -94,7 +92,7 @@ int main() {
                 minha_biblioteca.emprestarLivro(isbn, id);
                 break;
             }
-            case 8: { // Devolver Livro
+            case 8: {
                 std::string isbn, id;
                 std::cout << "--- Devolver Livro ---\n";
                 std::cout << "ISBN do livro: ";
@@ -104,3 +102,6 @@ int main() {
                 minha_biblioteca.devolverLivro(isbn, id);
                 break;
             }
+        }
+    }
+}

@@ -107,7 +107,6 @@ void Biblioteca::devolverLivro(const std::string& isbn, const std::string& idMem
     Membro* membro = buscarMembro(idMembro);
 
     if (livro && membro) {
-        // A lógica de remoção do livro da lista do membro é tratada pelo método da classe Membro.
         livro->setDisponivel(true);
         membro->devolverLivro(livro);
         std::cout << "'" << livro->getTitulo() << "' devolvido por '" << membro->getNome() << "'.\n";

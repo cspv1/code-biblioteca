@@ -4,9 +4,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm> // Necessário para std::find_if
+#include <algorithm>
 
-// Classe Livro
 class Livro {
 private:
     std::string titulo;
@@ -19,7 +18,6 @@ public:
     Livro(std::string titulo, std::string autor, int ano, std::string isbn)
         : titulo(titulo), autor(autor), ano(ano), isbn(isbn), disponivel(true) {}
 
-    // Getters
     std::string getTitulo() const { return titulo; }
     std::string getAutor() const { return autor; }
     int getAno() const { return ano; }
@@ -29,18 +27,16 @@ public:
     void setDisponivel(bool status) { this->disponivel = status; }
 };
 
-// Classe Membro
 class Membro {
 private:
     std::string nome;
     std::string idMembro;
-    std::vector<Livro*> livrosEmprestados; // Armazena ponteiros para livros
+    std::vector<Livro*> livrosEmprestados;
 
 public:
     Membro(std::string nome, std::string idMembro)
         : nome(nome), idMembro(idMembro) {}
 
-    // Getters
     std::string getNome() const { return nome; }
     std::string getIdMembro() const { return idMembro; }
     const std::vector<Livro*>& getLivrosEmprestados() const { return livrosEmprestados; }
@@ -52,26 +48,22 @@ public:
     }
 };
 
-// Classe Biblioteca
 class Biblioteca {
 private:
     std::vector<Livro> livros;
     std::vector<Membro> membros;
 
 public:
-    // Métodos CRUD para Livros
     void adicionarLivro(const Livro& livro);
     void listarLivros() const;
     Livro* buscarLivro(const std::string& isbn);
     void removerLivro(const std::string& isbn);
 
-    // Métodos CRUD para Membros
     void adicionarMembro(const Membro& membro);
     void listarMembros() const;
     Membro* buscarMembro(const std::string& idMembro);
     void removerMembro(const std::string& idMembro);
     
-    // Lógica de Empréstimo e Devolução
     void emprestarLivro(const std::string& isbn, const std::string& idMembro);
     void devolverLivro(const std::string& isbn, const std::string& idMembro);
 };

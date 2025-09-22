@@ -1,0 +1,46 @@
+#include "Biblioteca.h"
+
+int main() {
+    Biblioteca minha_biblioteca;
+
+    // Criando e adicionando livros
+    Livro livro1("O Senhor dos Aneis", "J.R.R. Tolkien", 1954, "978-0618053267");
+    Livro livro2("1984", "George Orwell", 1949, "978-0451524935");
+    minha_biblioteca.adicionarLivro(livro1);
+    minha_biblioteca.adicionarLivro(livro2);
+    
+    // Criando e adicionando membros
+    Membro membro1("Joao", "M001");
+    Membro membro2("Maria", "M002");
+    minha_biblioteca.adicionarMembro(membro1);
+    minha_biblioteca.adicionarMembro(membro2);
+    
+    std::cout << "\n--- Estado inicial da Biblioteca ---\n";
+    minha_biblioteca.listarLivros();
+    minha_biblioteca.listarMembros();
+
+    // Empréstimo
+    std::cout << "\n--- Emprestimo do livro 'O Senhor dos Aneis' para Joao ---\n";
+    minha_biblioteca.emprestarLivro("978-0618053267", "M001");
+    minha_biblioteca.listarLivros();
+    minha_biblioteca.listarMembros();
+    
+    // Tentando emprestar um livro que já está emprestado
+    std::cout << "\n--- Tentando emprestar novamente ---\n";
+    minha_biblioteca.emprestarLivro("978-0618053267", "M002");
+
+    // Devolução
+    std::cout << "\n--- Devolucao do livro por Joao ---\n";
+    minha_biblioteca.devolverLivro("978-0618053267", "M001");
+    minha_biblioteca.listarLivros();
+    minha_biblioteca.listarMembros();
+
+    // Removendo um livro e um membro
+    std::cout << "\n--- Removendo livro e membro ---\n";
+    minha_biblioteca.removerLivro("978-0451524935");
+    minha_biblioteca.removerMembro("M002");
+    minha_biblioteca.listarLivros();
+    minha_biblioteca.listarMembros();
+
+    return 0;
+}

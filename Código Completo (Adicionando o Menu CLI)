@@ -1,0 +1,106 @@
+#include "Biblioteca.h"
+#include <limits> // Para std::numeric_limits
+
+// Função para exibir o menu e obter a escolha do usuário
+int exibirMenu() {
+    int escolha;
+    std::cout << "\n--- Sistema de Gerenciamento da Biblioteca ---\n";
+    std::cout << "1. Adicionar Livro\n";
+    std::cout << "2. Listar Livros\n";
+    std::cout << "3. Remover Livro\n";
+    std::cout << "4. Adicionar Membro\n";
+    std::cout << "5. Listar Membros\n";
+    std::cout << "6. Remover Membro\n";
+    std::cout << "7. Emprestar Livro\n";
+    std::cout << "8. Devolver Livro\n";
+    std::cout << "0. Sair\n";
+    std::cout << "-----------------------------------------------\n";
+    std::cout << "Digite sua escolha: ";
+    std::cin >> escolha;
+    return escolha;
+}
+
+// Função para limpar o buffer do teclado
+void limparBuffer() {
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
+
+int main() {
+    Biblioteca minha_biblioteca;
+    int escolha;
+
+    do {
+        escolha = exibirMenu();
+        limparBuffer(); // Limpa o buffer antes de ler strings
+
+        switch (escolha) {
+            case 1: { // Adicionar Livro
+                std::string titulo, autor, isbn;
+                int ano;
+                std::cout << "--- Adicionar Livro ---\n";
+                std::cout << "Titulo: ";
+                std::getline(std::cin, titulo);
+                std::cout << "Autor: ";
+                std::getline(std::cin, autor);
+                std::cout << "Ano: ";
+                std::cin >> ano;
+                limparBuffer();
+                std::cout << "ISBN: ";
+                std::getline(std::cin, isbn);
+                Livro novoLivro(titulo, autor, ano, isbn);
+                minha_biblioteca.adicionarLivro(novoLivro);
+                break;
+            }
+            case 2: // Listar Livros
+                minha_biblioteca.listarLivros();
+                break;
+            case 3: { // Remover Livro
+                std::string isbn;
+                std::cout << "--- Remover Livro ---\n";
+                std::cout << "ISBN do livro a ser removido: ";
+                std::getline(std::cin, isbn);
+                minha_biblioteca.removerLivro(isbn);
+                break;
+            }
+            case 4: { // Adicionar Membro
+                std::string nome, id;
+                std::cout << "--- Adicionar Membro ---\n";
+                std::cout << "Nome: ";
+                std::getline(std::cin, nome);
+                std::cout << "ID do Membro: ";
+                std::getline(std::cin, id);
+                Membro novoMembro(nome, id);
+                minha_biblioteca.adicionarMembro(novoMembro);
+                break;
+            }
+            case 5: // Listar Membros
+                minha_biblioteca.listarMembros();
+                break;
+            case 6: { // Remover Membro
+                std::string id;
+                std::cout << "--- Remover Membro ---\n";
+                std::cout << "ID do Membro a ser removido: ";
+                std::getline(std::cin, id);
+                minha_biblioteca.removerMembro(id);
+                break;
+            }
+            case 7: { // Emprestar Livro
+                std::string isbn, id;
+                std::cout << "--- Emprestar Livro ---\n";
+                std::cout << "ISBN do livro: ";
+                std::getline(std::cin, isbn);
+                std::cout << "ID do Membro: ";
+                std::getline(std::cin, id);
+                minha_biblioteca.emprestarLivro(isbn, id);
+                break;
+            }
+            case 8: { // Devolver Livro
+                std::string isbn, id;
+                std::cout << "--- Devolver Livro ---\n";
+                std::cout << "ISBN do livro: ";
+                std::getline(std::cin, isbn);
+                std::cout << "ID do Membro: ";
+                std::getline(std::cin, id);
+                minha_biblioteca.devolverLivro(isbn, id);
+                break;
+            }
